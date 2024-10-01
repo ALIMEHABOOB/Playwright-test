@@ -6,7 +6,7 @@ import userData from '../testData/userData.json';
 test('Validate dynamic table data', async ({ page }) => {
   // Navigate to the URL
   await page.goto('https://testpages.herokuapp.com/styled/tag/dynamic-table.html');
-
+  await page.waitForTimeout(8000)
   // Click on "Table Data" button
   await page.click('details summary');
 
@@ -21,7 +21,6 @@ test('Validate dynamic table data', async ({ page }) => {
   await page.click('#refreshtable');
 
   // Wait for table data to load
-  await page.waitForTimeout(8000)
 
   const rowSelector1 = '#dynamictable tr:has-text("Bob")';
 
@@ -50,5 +49,6 @@ test('Validate dynamic table data', async ({ page }) => {
   // Assert that the third column contains 'male'
   const genderCel2 = await page.locator(`${rowSelector2} td:nth-child(3)`);
   await expect(genderCel2).toHaveText('male');
+  await page.waitForTimeout(8000)
   
 });
